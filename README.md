@@ -1,5 +1,16 @@
 # AlgebraCook
+## Laravel projekt za vježbu
 
+
+### Funkcionalnosti
+	- ispis svih recepata
+	- ispis pojedinačnog recepta
+	
+	- izrada novog recepta za prijavljenog korisnika
+	- uređivanje postojećeg recepta za prijavljenog korisnika
+	- brisanje postojećeg recepta za prijavljenog korisnika
+	
+	
 
 
 
