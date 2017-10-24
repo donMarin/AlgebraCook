@@ -73,6 +73,6 @@ class RecipesController extends Controller
      */
     public function delete($id)
     {
-        //
+        return "brisanje recepata ID:" . $id;
     }
 }

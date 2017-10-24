@@ -25,5 +25,5 @@ Route::get('/recipes/view/{id}', 'RecipesController@view'); //detaljan prikaz od
 Route::get('/recipes/edit/{id}', 'RecipesController@edit'); //prikaz webobrasca za uređivanje
 Route::post('/recipes/edit', 'RecipesController@update'); //ažuriranje podataka u bazi
 
-
+Route::delete('/recipes/del/{id}','RecipesController@delete'); //brisanje recepta
 
