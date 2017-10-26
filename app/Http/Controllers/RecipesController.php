@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Recipe;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -16,7 +16,7 @@ class RecipesController extends Controller
      */
     public function index()
     {
-        return"popis svih recepata";
+        return view ('index', ['recipes'=> Recipe::get()]);
     }
 
    

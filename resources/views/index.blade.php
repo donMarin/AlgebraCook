@@ -17,6 +17,7 @@
 				<li class="list-group-item">
 					<a href="recipes/view/{{ $recipe->id }}">{{ $recipe->name }}</a>
 				</li>
+				@endforeach
 			</div>
 		</div>
 	</div>
