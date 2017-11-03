@@ -15,7 +15,7 @@
 				<ul class="list-group">
 				@foreach ($recipes as $recipe)
 				<li class="list-group-item">
-					<a href="recipes/view/{{ $recipe->id }}">{{ $recipe->name }}</a>
+					<a href="/recipes/view/{{ $recipe->id }}">{{ $recipe->name }}</a>
 				</li>
 				@endforeach
 			</div>

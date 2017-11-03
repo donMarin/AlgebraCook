@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Recipe;
+use App\Ingredient;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -22,13 +24,30 @@ class RecipesController extends Controller
    
     public function add()
     {
-        return "prikaz view-a sa web obrascem za unos";
+        return view('add');
+		//return "prikaz view-a sa web obrascem za unos";
     }
 
 	public function save(Request $request)
 	{
-		//$request->nameInputa = vrijednostInputa
-		return "spremam podatke iz weborasca u bazu";
+		$data = $request->all();
+		$noviRecept = new Recipe;
+		$noviRecept->name = $data['name']; //lijevo iz Modela a desno je iz html name=""
+		$noviRecept->creator_id = 1;
+		$noviRecept->description = $data['opis'];
+		
+		if ( $noviRecept->save() ){
+		
+			foreach($data['ingredient'] as $key => $value) {
+				
+				$sastojak = new Ingredient;
+				$sastojak->name = $value;
+				$sastojak->recipe_id = $noviRecept->id;
+				$sastojak->save();
+			}
+		}
+				
+		return redirect()->action('RecipesController@index');
 	}
     
     /**
@@ -39,7 +58,7 @@ class RecipesController extends Controller
      */
     public function view($id)
     {
-        return "prikaz recepta ID: " . $id;
+        return view('view')->with('recipe', Recipe::find($id));
     }
 
     /**
@@ -50,7 +69,9 @@ class RecipesController extends Controller
      */
     public function edit($id)
     {
-        return "promjena recepta sa ID:" . $id; //prikaz web obrasca
+        return view('edit')->with('recipe', Recipe::find($id));
+		//return Recipe::find($id);
+		//return "promjena recepta sa ID:" . $id; //prikaz web obrasca
     }
 
     /**
@@ -60,9 +81,29 @@ class RecipesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        return "spremanje promjena recepta ID:" . $id;
+      $data = $request->all();
+	  $recipe = Recipe::find($data['id']);
+	  
+	  foreach ($recipe->ingredients as $ingredient)
+		$ingredient->delete();
+		
+		$recipe->name = $data['name'];
+		$recipe->description = $data['opis'];
+		
+		if ($recipe->save() )
+		{
+			 foreach ( $data['ingredient'] as $key => $value )
+			 {
+				 $sastojak = new ingredient;
+				 $sastojak->name = $value;
+				 $sastojak->recipe_id = $recipe->id; //mora imati odgovarajuću vrijednost id
+				 $sastojak->save();
+			 }
+		}
+		return redirect()->action('RecipesController@index');
+	
     }
 
     /**
