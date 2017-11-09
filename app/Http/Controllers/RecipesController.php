@@ -11,6 +11,11 @@ use App\Http\Controllers\Controller;
 
 class RecipesController extends Controller
 {
+	
+	public function __construct()
+	{
+		$this->middleware('auth');
+	}
     /**
      * Display a listing of the resource.
      *
@@ -33,7 +38,7 @@ class RecipesController extends Controller
 		$data = $request->all();
 		$noviRecept = new Recipe;
 		$noviRecept->name = $data['name']; //lijevo iz Modela a desno je iz html name=""
-		$noviRecept->creator_id = 1;
+		$noviRecept->creator_id = auth()->user()->id;
 		$noviRecept->description = $data['opis'];
 		
 		if ( $noviRecept->save() ){
@@ -69,7 +74,12 @@ class RecipesController extends Controller
      */
     public function edit($id)
     {
-        return view('edit')->with('recipe', Recipe::find($id));
+		$recipe= Recipe::find($id);
+        		  
+		  if ( $recipe->creator_id !==auth()->user()->id )
+		  return redirect()->action['RecipesController@index'];
+	  
+		 return view('edit')->with('recipe', Recipe::find($id));
 		//return Recipe::find($id);
 		//return "promjena recepta sa ID:" . $id; //prikaz web obrasca
     }
@@ -85,6 +95,8 @@ class RecipesController extends Controller
     {
       $data = $request->all();
 	  $recipe = Recipe::find($data['id']);
+	  
+	
 	  
 	  foreach ($recipe->ingredients as $ingredient)
 		$ingredient->delete();
@@ -114,6 +126,7 @@ class RecipesController extends Controller
      */
     public function delete($id)
     {
-        return "brisanje recepata ID:" . $id;
+		Recipe::find($id)->delete();
+        return redirect()->action('RecipesController@index');
     }
 }
