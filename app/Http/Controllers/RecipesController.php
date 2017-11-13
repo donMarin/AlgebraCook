@@ -66,6 +66,16 @@ class RecipesController extends Controller
         return view('view')->with('recipe', Recipe::find($id));
     }
 
+	public function viewSastojci()
+	{
+		return view("sastojci", array("ingredients" => Ingredient::get(),
+									"recipes" => Recipe::get()
+									)); 
+		//return array ("sastojak1", "sastojak2");
+		//return "sastojci";
+		//return view ('viewsastojci', array('ingredient' => Ingredient::get()) );
+	}
+	
     /**
      * Show the form for editing the specified resource.
      *
@@ -130,11 +140,7 @@ class RecipesController extends Controller
         return redirect()->action('RecipesController@index');
     }
 	
-	public function viewsastojak()
-	{
-		return view ('viewsastojci', array('ingredient' => Ingredient::get()) );
-	}
-	
+		
 }
 
 

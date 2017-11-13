@@ -23,6 +23,9 @@ Route::post('/auth/register', 'Auth\AuthController@postRegister');
 Route::get ('/hello','TestController@hello'); //klasa testcontroller i metoda hello
 
 
+Route::get('/profile', 'UserController@profile');
+Route::post('/profile', 'UserController@profile');
+
 Route::get('/', function () {
     return redirect('/recipes');
 });
@@ -31,8 +34,10 @@ Route::get('/home', function () {
     return redirect('/recipes');
 });
 
-	Route::get('/sastojci', 'RecipesController@viewsastojak');
+	Route::get('/sastojci', 'RecipesController@viewsastojci');
 
+
+	
 Route::get('/recipes', 'RecipesController@index'); //prikaz svih recepata (popis)
 
 Route::get('/recipes/add', 'RecipesController@add');  //prikaz view-a sa web obrascem za unos
