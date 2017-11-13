@@ -31,6 +31,8 @@ Route::get('/home', function () {
     return redirect('/recipes');
 });
 
+	Route::get('/sastojci', 'RecipesController@viewsastojak');
+
 Route::get('/recipes', 'RecipesController@index'); //prikaz svih recepata (popis)
 
 Route::get('/recipes/add', 'RecipesController@add');  //prikaz view-a sa web obrascem za unos
@@ -42,4 +44,6 @@ Route::get('/recipes/edit/{id}', 'RecipesController@edit'); //prikaz webobrasca 
 Route::post('/recipes/edit', 'RecipesController@update'); //ažuriranje podataka u bazi
 
 Route::get('/recipes/del/{id}','RecipesController@delete'); //brisanje recepta
+
+
 

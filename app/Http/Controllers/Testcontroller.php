@@ -14,3 +14,12 @@ class Testcontroller extends Controller
 		return view ("test", ['varijabla'=> 'vrijednost ove varijable']);
 	}
 }
+?>
+
+
+
+
+
+
+
+
