@@ -27,6 +27,7 @@ Route::get('/profile', 'UserController@profile');
 Route::post('/profile', 'UserController@profile');
 
 
+
 Route::get('/', function () {
     return redirect('/recipes');
 });
@@ -52,5 +53,5 @@ Route::post('/recipes/edit', 'RecipesController@update'); //ažuriranje podataka
 Route::get('/recipes/del/{id}','RecipesController@delete'); //brisanje recepta
 
 
-Route::get('/image', 'UserController@image');
+Route::get('/image', 'TestController@image'); // zadnje dodana ruta ISPIT
 

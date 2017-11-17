@@ -11,7 +11,7 @@ class Testcontroller extends Controller
 {
 	public function Image()
 	{
-		return view ("image", ['varijabla'=> 'vrijednost ove varijable']);
+		return view ("image", ['varijabla'=> 'neka fotografija']);
 	}
 }
 ?>
