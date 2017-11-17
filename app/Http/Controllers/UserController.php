@@ -27,4 +27,15 @@ class UserController extends Controller
 		}
 		return view('profile');
 	}
+
+	public function Image()
+	{
+		return  view ("image", ['varijabla'=> 'neka fotografija']);
+	}
+
 }
+
+
+
+
+

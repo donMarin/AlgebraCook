@@ -9,9 +9,9 @@ use App\Http\Controllers\Controller;
 
 class Testcontroller extends Controller
 {
-	public function hello()
+	public function Image()
 	{
-		return view ("test", ['varijabla'=> 'vrijednost ove varijable']);
+		return view ("image", ['varijabla'=> 'vrijednost ove varijable']);
 	}
 }
 ?>

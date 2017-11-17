@@ -11,8 +11,7 @@ use App\Http\Controllers\Controller;
 
 class RecipesController extends Controller
 {
-	
-	public function __construct()
+		public function __construct()
 	{
 		$this->middleware('auth');
 	}
@@ -25,7 +24,6 @@ class RecipesController extends Controller
     {
         return view ('index', ['recipes'=> Recipe::get()]);
     }
-
    
     public function add()
     {
@@ -75,8 +73,7 @@ class RecipesController extends Controller
 		//return "sastojci";
 		//return view ('viewsastojci', array('ingredient' => Ingredient::get()) );
 	}
-	
-    /**
+	    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -93,7 +90,6 @@ class RecipesController extends Controller
 		//return Recipe::find($id);
 		//return "promjena recepta sa ID:" . $id; //prikaz web obrasca
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -105,9 +101,7 @@ class RecipesController extends Controller
     {
       $data = $request->all();
 	  $recipe = Recipe::find($data['id']);
-	  
-	
-	  
+		  
 	  foreach ($recipe->ingredients as $ingredient)
 		$ingredient->delete();
 		
@@ -127,7 +121,6 @@ class RecipesController extends Controller
 		return redirect()->action('RecipesController@index');
 	
     }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -139,13 +132,5 @@ class RecipesController extends Controller
 		Recipe::find($id)->delete();
         return redirect()->action('RecipesController@index');
     }
-	
 		
 }
-
-
-
-
-
-
-
